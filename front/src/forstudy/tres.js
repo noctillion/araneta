@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import * as AiIcons from "react-icons/ai";
 import { NameContext } from "../App";
@@ -164,6 +164,8 @@ export const ReportsThreeStudy = () => {
     setDataToProviderForNetworkFiltered,
     setDataToProviderInterselect,
     setDataToProviderForNewNet,
+    setDataToProviderScrollDir,
+    scrollDir,
   } = useContext(NameContext);
   const [newData, setNewData] = useState([]);
   const [newInitialHold, setNewInitialHold] = useState([]);
@@ -186,6 +188,38 @@ export const ReportsThreeStudy = () => {
   /*  useEffect(() => {
     setlocInitial(initial);
   }, [initial]); */
+
+  useEffect(() => {
+    const threshold = 20;
+    let lastScrollY = window.pageYOffset;
+    let ticking = false;
+
+    const updateScrollDir = () => {
+      const scrollY = window.pageYOffset;
+
+      if (Math.abs(scrollY - lastScrollY) < threshold) {
+        ticking = false;
+        return;
+      }
+      setDataToProviderScrollDir(
+        scrollY > lastScrollY ? "scrolling down" : "scrolling up"
+      );
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollDir);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+    console.log(scrollDir);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [scrollDir, setDataToProviderScrollDir]);
 
   const [newUserInfo, setNewUserInfo] = useState({
     profileImages: [],

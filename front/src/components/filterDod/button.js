@@ -2,11 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 const CheckButt = styled.div`
-  display: flex;
+  display: inline-block;
   flex-direction: row;
   //border: 1px solid green;
   width: 5vw;
   align-items: center;
+  @media (max-width: 768px) {
+    //flex-direction: column;
+    display: inline-block;
+    margin-right: 10px;
+  }
 `;
 
 const Button = ({ title, value, checked, toggle }) => {

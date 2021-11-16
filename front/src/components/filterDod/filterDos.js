@@ -1,6 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import { NameContext } from "../../App";
 import Button from "./button";
+import styled from "styled-components";
+
+let ButtContainer = styled.div`
+  display: flex;
+  font-size: 2rem;
+  //border: 1px solid yellow;
+  width: 60vw;
+  @media (max-width: 768px) {
+    justify-content: space-around;
+    width: 100%;
+  }
+`;
 
 const FilterDos = ({ items }) => {
   const { setDataToProviderFilteredR } = useContext(NameContext);
@@ -96,7 +108,7 @@ const FilterDos = ({ items }) => {
   }; */
 
   return (
-    <div style={{ display: "flex", fontSize: "2rem" }}>
+    <ButtContainer>
       {nitems.map((object) => {
         /////items
         return (
@@ -109,7 +121,7 @@ const FilterDos = ({ items }) => {
           />
         );
       })}
-    </div>
+    </ButtContainer>
   );
 };
 

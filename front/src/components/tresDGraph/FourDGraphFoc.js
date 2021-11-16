@@ -99,6 +99,8 @@ export const FocusGraphDos = () => {
   bloomPass.threshold = 0.1;
   fgRef.current.postProcessingComposer().addPass(bloomPass); */
 
+  /*  fgRef.current.d3Force("charge").strength(-400); */
+
   /*   useCallback(
     (node) => {
       const bloomPass = new UnrealBloomPass();
@@ -153,6 +155,7 @@ export const FocusGraphDos = () => {
       fgRef.current.refresh();
     }
   }, [labels, fgRef]); */
+
   useEffect(() => {
     console.log(forManipulation, "forManipulationAqui");
     if (forManipulation.nodes !== undefined) {
@@ -451,10 +454,19 @@ export const FocusGraphDos = () => {
       sprite.color = "rgba(187, 35, 100, 1)"; //{ textColor }; //node.color;
       sprite.textHeight = node.node_size1 / 500;
       fgRef.current.refresh();
+      console.log(fgRef.current, "fgRef.current");
       return sprite;
     },
     [fgRef]
   );
+
+  const linkSel = useCallback((link) => {
+    if (link.source.genes === "PER4" && link.target.genes === "RBOHD") {
+      return "red";
+    } else {
+      return "#ffffff30";
+    }
+  }, []);
 
   /*   let getNodeEsp = useCallback(
     (node) => {
@@ -659,6 +671,7 @@ export const FocusGraphDos = () => {
       return sequencialFilter;
     }
   };
+
   return (
     <>
       <div
@@ -685,12 +698,17 @@ export const FocusGraphDos = () => {
               nodeResolution="12"
               linkOpacity="0.5"
               linkResolution="10"
+              linkColor={linkSel}
+              linkWidth={() => 0.5}
+              //linkDirectionalParticles={1}
+              //linkWidth={(link) => link.weight}
+              /* linkAutoColorBy={(d) => forManipulation.nodes[d.source].group} */
               nodeOpacity={nodeAmount}
               //nodeColor={(node) => (node.id === "HSP101" ? "orange" : "white")}
               //nodeColor={handleNodeColor}
               //nodeColor={search ? getNodeEsp : handleNodeColor}
               nodeColor={change()}
-              nodeVal={(node) => node.node_size1 / 800}
+              nodeVal={(node) => node.node_size1 / 10000}
               //nodeColor="#ff0000"
               //nodeColor={(node) => console.log(node.node_colorA)}
               nodeThreeObject={spriText}

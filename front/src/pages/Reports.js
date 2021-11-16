@@ -210,6 +210,20 @@ const CardsContainer = styled.div`
   margin-bottom: 10px;
 `; */
 
+let ButtonContSection = styled.div`
+  display: flex;
+  background-color: rgb(165, 170, 160, 0.2);
+  border-radius: 5px;
+  width: 100%;
+  align-items: center;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  //border: 1px solid red;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
 export const Reports = () => {
   return (
     <div className="reports">
@@ -905,17 +919,7 @@ export const ReportsTwo = () => {
           </ChartCont>
         </ListSection>
         <ListSection style={{ marginTop: "5px", backgroundColor: "#FFFFFF" }}>
-          <div
-            style={{
-              display: "flex",
-              backgroundColor: "rgb(165, 170, 160, 0.2)",
-              borderRadius: "5px",
-              width: "100%",
-              alignItems: "center",
-              paddingTop: "2vh",
-              paddingBottom: "2vh",
-            }}
-          >
+          <ButtonContSection>
             {filteredR !== null && filteredR.length > 0 ? (
               <ListUpTitle
                 style={{
@@ -940,7 +944,7 @@ export const ReportsTwo = () => {
 
             {/* <FilterComp items={groupB} /> */}
             <FilterDos items={groupB} />
-          </div>
+          </ButtonContSection>
         </ListSection>
       </ListSectionCont>
 
