@@ -12,6 +12,7 @@ import MainHeat from "../components/heatmapMio/mainHeat";
 //import FilterComp from "../components/filter/filter";
 import FilterDos from "../components/filterDod/filterDos";
 import CardIntersection from "../components/cardInter/cardIntersection";
+import { Link } from "react-router-dom";
 
 import { ReportsThreeStudy } from "../forstudy/tres";
 
@@ -224,6 +225,30 @@ let ButtonContSection = styled.div`
   }
 `;
 
+const MainButtonD = styled(Link)`
+  margin-top: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  background-color: #ff0d1d;
+  border: 0.0625rem solid transparent;
+  border-radius: 0.25rem;
+  color: #fff;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  min-height: 3rem;
+  text-decoration-line: none;
+  width: 10em;
+  text-align: center;
+
+  &:hover {
+    background-color: #bd0d19;
+  }
+`;
+
 export const Reports = () => {
   return (
     <div className="reports">
@@ -234,6 +259,7 @@ export const Reports = () => {
         Ipsum, During section Lists it is required to select the lorem ips
         .lorem Ipsum
       </div>
+      <MainButtonD to="/lists/lists1">Upload lists</MainButtonD>
     </div>
   );
 };
@@ -1001,7 +1027,7 @@ export const ReportsTwo = () => {
                     marginLeft: "10px",
                   }}
                 >
-                  Selected genes by lists overlappppppyy {consolBylist.length}
+                  Selected genes by lists overlap {consolBylist.length}
                 </ListUpTitle>
 
                 {/* <FilterComp items={groupB} /> */}
@@ -1025,11 +1051,13 @@ export const ReportsTwo = () => {
       <ListSectionCont>
         <ListUpTitle>Total selected genes: {totalListCon.length}</ListUpTitle>
         <ListSection style={{ justifyContent: "center" }}>
-          <MainButton onClick={sendConsolid}>
-            <span style={{ marginLeft: "10px", marginRight: "10px" }}>
-              ConsolidateDos
-            </span>
-          </MainButton>
+          {totalListCon.length > 0 ? (
+            <MainButton onClick={sendConsolid}>
+              <span style={{ marginLeft: "10px", marginRight: "10px" }}>
+                Consolidate selection
+              </span>
+            </MainButton>
+          ) : null}
         </ListSection>
         <ListUpTitle />
       </ListSectionCont>

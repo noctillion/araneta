@@ -125,7 +125,7 @@ const MainHeat = ({ datam, names }) => {
     Math.max.apply(
       Math,
       data.map(function (o) {
-        return o.overlap;
+        return o.pval;
       })
     );
 
@@ -133,7 +133,7 @@ const MainHeat = ({ datam, names }) => {
     Math.min.apply(
       Math,
       data.map(function (o) {
-        return o.overlap;
+        return o.pval;
       })
     );
 
@@ -156,6 +156,27 @@ const MainHeat = ({ datam, names }) => {
   );
 
   let maxmin = { max: vmax, min: vmin };
+
+  let valueTransp = (x) => {
+    if (x >= 0.1) {
+      return 0;
+    }
+    if (x > 0.05 && x <= 0.1) {
+      return 0.1;
+    }
+    if (x > 0.01 && x <= 0.05) {
+      return 0.3;
+    }
+    if (x > 0.001 && x <= 0.01) {
+      return 0.4;
+    }
+    if (x > 0 && x <= 0.001) {
+      return 0.5;
+    }
+    if (x === 0) {
+      return 1;
+    }
+  };
 
   /* console.log(dataIn, "jk"); */
 
@@ -231,10 +252,19 @@ const MainHeat = ({ datam, names }) => {
               <HeatMain numc={dataIn.columns}>
                 {data.map((elem) => {
                   return elem.map((elem) => {
-                    let col = `rgb(252, 27, 1, ${
+                    /*   let col = `rgb(252, 27, 1, ${
                       1 -
                       (maxmin.max - elem.overlap) / (maxmin.max - maxmin.min)
-                    })`;
+                    })`; */
+                    let col = `rgb(252, 27, 1, ${valueTransp(elem.pval)})`;
+
+                    let vfRgt = {
+                      v1max: maxmin.max,
+                      v2pval: elem.pval,
+                      v3min: maxmin.min,
+                    };
+
+                    console.log(vfRgt, "objectCA");
                     return (
                       <SmallSquareCo col={col} elem={elem} />
                       /*                       <SmallSquareC

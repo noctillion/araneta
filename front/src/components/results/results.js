@@ -7,6 +7,7 @@ const ListSectionCont = styled.div`
   width: 100%;
   height: fit-content;
   display: flex;
+  font-family: "Maven Pro", sans-serif;
   flex-direction: column;
   background-color: rgb(232, 234, 238);
   font-size: 3rem;
@@ -75,6 +76,7 @@ const Results = ({ resultsGeneral }) => {
     { name: "ATT", mapper: "bet_c3", id: 4 },
     { name: "CC", mapper: "c_c2", id: 5 },
     { name: "FF", mapper: "ei_c5", id: 6 },
+    { name: "groupQuery", mapper: "groupQuery", id: 7 },
   ];
 
   const tableSchemaDos = {
@@ -111,7 +113,8 @@ const Results = ({ resultsGeneral }) => {
   console.log(aver); */
 
   let filteredCard = resultsGeneral.map((element, index) => {
-    return element.map((elem) => filterOb(elem, scje)).slice(0, 5);
+    console.log(element, "eleeeement");
+    return element.map((elem) => filterOb(elem, scje));
   });
 
   console.log(filteredCard);
@@ -125,12 +128,13 @@ const Results = ({ resultsGeneral }) => {
       <div style={{ height: "10vh" }}></div>
       <ListUpTitle>Network Centrality Measures by Group</ListUpTitle>
       <ListSection>
-        {filteredCard.map((result, index) => {
+        {filteredCard.slice(0, 5).map((result, index) => {
+          console.log(result, "ressssssss");
           return (
             <CardCont key={index}>
               <h3>Group: {result[0].groupQuery}</h3>
               <p>Nodes: {result.length}</p>
-              /
+              <br />
               <ComponentTableDos nData={result} names={tableSchemaDos} />
               {/*  <TableTot>
                 <RowTable cols={tableSchema} res={result} />

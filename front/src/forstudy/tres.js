@@ -518,20 +518,44 @@ export const ReportsThreeStudy = () => {
             </>
           ) : null}
 
-          <FileUpCont>
-            <div>
-              <form>
-                <FileUpload
-                  accept=".csv"
-                  label=""
-                  show={newData.length}
-                  funct={handleSubmit}
-                  /* multiple */
-                  updateFilesCb={updateUploadedFiles}
-                />
-              </form>
-            </div>
-          </FileUpCont>
+          <div
+            style={{ display: "flex", justifyContent: "center", width: "100%" }}
+          >
+            <FileUpCont>
+              <div>
+                <ListUpTitle style={{ fontSize: "1rem" }}>
+                  Upload a list
+                </ListUpTitle>
+                <form>
+                  <FileUpload
+                    accept=".csv"
+                    label=""
+                    show={newData.length}
+                    funct={handleSubmit}
+                    /* multiple */
+                    updateFilesCb={updateUploadedFiles}
+                  />
+                </form>
+              </div>
+            </FileUpCont>
+            <FileUpCont>
+              <div>
+                <ListUpTitle style={{ fontSize: "1rem" }}>
+                  Upload a expresion list
+                </ListUpTitle>
+                <form>
+                  <FileUpload
+                    accept=".csv"
+                    label=""
+                    show={newData.length}
+                    funct={handleSubmit}
+                    /* multiple */
+                    updateFilesCb={updateUploadedFiles}
+                  />
+                </form>
+              </div>
+            </FileUpCont>
+          </div>
         </ListSection>
       </ListSectionCont>
       <ListSectionCont>
@@ -550,7 +574,7 @@ export const ReportsThreeStudy = () => {
 
       {/* <div style={{ width: "100%", height: "100px" }}></div> */}
 
-      <Upset />
+      {/*  <Upset /> */}
 
       {/* <BasicTable /> */}
       {/* <Network /> */}

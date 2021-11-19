@@ -26,11 +26,13 @@ let TableDiv = styled.div`
 let CellDivHead = styled.div`
   display: flex;
   width: 100%;
-  font-weight: bold;
+  //font-weight: bold;
   font-size: 1.2rem;
+  font-family: "Maven Pro", sans-serif;
   align-items: center;
-  background-color: rgb(58, 115, 89);
+  background-color: #3a7359;
   justify-content: center;
+  color: white;
   //border: 1px solid red;
   //padding-left: 15px;
 `;
@@ -39,6 +41,7 @@ let CellDiv = styled.div`
   display: flex;
   width: 100%;
   font-size: 1rem;
+  font-family: "Maven Pro", sans-serif;
   align-items: center;
   justify-content: center;
   background-color: rgb(165, 170, 160);

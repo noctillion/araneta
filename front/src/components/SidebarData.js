@@ -52,17 +52,17 @@ export const SidebarData = [
       },
     ],
   },
-  {
+  /*   {
     title: "Products",
     path: "/products",
     icon: <FaIcons.FaCartPlus />,
-  },
+  }, */
   {
     title: "Team",
     path: "/team",
     icon: <IoIcons.IoMdPeople />,
   },
-  {
+  /* {
     title: "Messages",
     path: "/messages",
     icon: <FaIcons.FaEnvelopeOpenText />,
@@ -82,7 +82,7 @@ export const SidebarData = [
         icon: <IoIcons.IoIosPaper />,
       },
     ],
-  },
+  }, */
   {
     title: "Support",
     path: "/support",

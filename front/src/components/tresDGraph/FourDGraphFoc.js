@@ -699,7 +699,7 @@ export const FocusGraphDos = () => {
               linkOpacity="0.5"
               linkResolution="10"
               linkColor={linkSel}
-              linkWidth={() => 0.5}
+              linkWidth={() => 1}
               //linkDirectionalParticles={1}
               //linkWidth={(link) => link.weight}
               /* linkAutoColorBy={(d) => forManipulation.nodes[d.source].group} */
@@ -708,7 +708,7 @@ export const FocusGraphDos = () => {
               //nodeColor={handleNodeColor}
               //nodeColor={search ? getNodeEsp : handleNodeColor}
               nodeColor={change()}
-              nodeVal={(node) => node.node_size1 / 10000}
+              nodeVal={(node) => node.node_size1 / 1000}
               //nodeColor="#ff0000"
               //nodeColor={(node) => console.log(node.node_colorA)}
               nodeThreeObject={spriText}
@@ -863,6 +863,8 @@ export const FocusGraphDos = () => {
                   </div>
                 </>
               ) : null}
+              <br />
+              <button onClick={console.log("object")}>Nodes</button>
             </div>
 
             <div

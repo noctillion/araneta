@@ -73,7 +73,7 @@ const SmallSquareCo = ({ col, elem }) => {
         before={elem.pval}
         onClick={handleClick}
         key={elem.id}
-        border={selected ? "4px solid black" : "1px solid green"}
+        border={selected ? "5px solid black" : "1px solid green"}
       >
         {elem.overlap}
       </SmallSquareC>
