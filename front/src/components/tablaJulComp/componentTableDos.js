@@ -21,6 +21,14 @@ let TableDiv = styled.div`
   display: inline-grid;
   border: 1px solid white;
   grid-auto-flow: column;
+  @media (max-width: 768px) {
+    width: 100%;
+    /* justify-content: center; */
+  }
+  @media (max-width: 1024px) {
+    width: 100%;
+    /* justify-content: center; */
+  }
 `;
 
 let CellDivHead = styled.div`
@@ -41,7 +49,8 @@ let CellDiv = styled.div`
   display: flex;
   width: 100%;
   font-size: 1rem;
-  font-family: "Maven Pro", sans-serif;
+  //font-family: "Maven Pro", sans-serif;
+  font-family: "Lato", sans-serif;
   align-items: center;
   justify-content: center;
   background-color: rgb(165, 170, 160);

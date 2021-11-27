@@ -48,9 +48,15 @@ const CardCont = styled.div`
   padding-right: 20px;
   margin-right: 10px;
   border-radius: 3px;
-  @media (max-width: 768px) {
+  @media only screen and (max-width: 768px) {
     width: 100%;
+    //background-color: white;
     //flex-basis: 70%;
+    justify-content: center;
+  }
+  @media only screen and (max-width: 1024px) {
+    width: 100%;
+    justify-content: center;
   }
 `;
 
@@ -134,6 +140,9 @@ const Results = ({ resultsGeneral }) => {
             <CardCont key={index}>
               <h3>Group: {result[0].groupQuery}</h3>
               <p>Nodes: {result.length}</p>
+              <button onClick={() => console.log(result, "ddtt")}>
+                expand
+              </button>
               <br />
               <ComponentTableDos nData={result} names={tableSchemaDos} />
               {/*  <TableTot>

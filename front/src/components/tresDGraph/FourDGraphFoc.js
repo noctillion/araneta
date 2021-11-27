@@ -46,11 +46,12 @@ const myData = {
 }; */
 
 export const FocusGraphDos = () => {
-  const { forNewNet } = useContext(NameContext);
+  const { forNewNet, corrNodes } = useContext(NameContext);
   /* console.log(forNetworkFiltered, "forNetworkFilteredforNetworkFiltered");
   const [graphData, setGraphData] = useState({});
   console.log(graphData, "graphDataLoqueentraAlaGrafica"); */
   // const [layout, setLayout] = useState([]);
+  console.log(corrNodes, "corrNodes..........");
   const [width, height] = useWindowSize();
   console.log(forNewNet, "forNewNet");
   const [forManipulation, setForManipulation] = useState({});
@@ -80,6 +81,13 @@ export const FocusGraphDos = () => {
   console.log(forTablesStaSorted, "forTablesStaSorted");
   const [query, setQuery] = useState([]);
   console.log(query, "matches");
+
+  const [toy, setToy] = useState([
+    { A: "AT2G38470", B: "AT5G04340" },
+    { A: "AT1G07135", B: "AT4G24570" },
+  ]);
+
+  console.log(toy, "toy");
 
   const onChangeHandler = (event) => {
     event.preventDefault();
@@ -460,13 +468,76 @@ export const FocusGraphDos = () => {
     [fgRef]
   );
 
-  const linkSel = useCallback((link) => {
-    if (link.source.genes === "PER4" && link.target.genes === "RBOHD") {
+  const linkSel = useCallback(
+    (link) => {
+      /*       if (corrNodes.NEW !== undefined) {
+        corrNodes.NEW.forEach((elem) => {
+          if (
+            (link.source.name2 === elem.A && link.target.name2 === elem.B) ||
+            (link.source.name2 === elem.B && link.target.name2 === elem.A)
+          ) {
+            return "red";
+          } else {
+            //return "#ffffff30";
+            return "green";
+          }
+        });
+      } */
+
+      /* toy.forEach((element) => {
+        console.log(element, "element");
+      });
+
+      const listHasPilots = operatives.some(operative => operative.pilot); */
+      if (corrNodes.NAW !== undefined) {
+        const userExists = corrNodes.NAW.some(
+          (cosa) => cosa.A === link.source.name2 && cosa.B === link.target.name2
+        );
+        const userExistsDos = corrNodes.NAW.some(
+          (cosa) => cosa.B === link.source.name2 && cosa.A === link.target.name2
+        );
+
+        if (userExists || userExistsDos) {
+          return "red";
+        } else {
+          return "#ffffff30";
+        }
+      }
+
+      /*       if (link.source.name2 === toy[0].A && link.target.name2 === toy[0].B) {
+        return "red";
+      } else {
+        return "#ffffff30";
+      } */
+    },
+    [corrNodes]
+  );
+
+  /*   const linkSel = useCallback(
+    (link) => {
+      if (corrNodes.NEW !== undefined) {
+        corrNodes.NEW.map((elem) => {
+          console.log(elem.A, "elemelem");
+          if (
+            (link.source.names2 === elem.A && link.target.names2 === elem.B) ||
+            (link.source.names2 === elem.B && link.target.names2 === elem.A)
+          ) {
+            return "red";
+          } else {
+            
+            return "green";
+          }
+        });
+      }
+
+       if (link.source.genes === "PER4" && link.target.genes === "RBOHD") {
       return "red";
     } else {
       return "#ffffff30";
-    }
-  }, []);
+    } 
+    },
+    [corrNodes.NEW]
+  ); */
 
   /*   let getNodeEsp = useCallback(
     (node) => {
@@ -768,7 +839,7 @@ export const FocusGraphDos = () => {
               <SearchBar placeholder="Search" onChange={handleSearch} />
               <button onClick={handleClickNode}>Modo search</button>
               <br />
-              <button onClick={handleClickNode2}>Default</button>
+              <button onClick={handleClickNode2}>DefaultY</button>
               <br />
               <button onClick={handleClickNode3}>Algoen3</button>
               {toglMult ? (

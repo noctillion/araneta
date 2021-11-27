@@ -8,7 +8,6 @@ import Upset from "../components/upset/upset";
 //import GraphCyt from "../components/citoNetw/citoNet";
 //import NApp from "../components/citoNetwDos/citoNetD";
 import TresDGraph from "../components/tresDGraph/TresDGraph";
-import ListUploadComp from "../components/listUploadComponent/listUploadComp";
 //import ListUploadComp from "../components/listUploadComponent/listUploadComp";
 
 //import { BasicTable } from "../components/table/basicTable";
@@ -176,7 +175,10 @@ export const ReportsThreeStudy = () => {
   //const [initialHold, setInitialHold] = useState([]);
   console.log(finlist, "listaConsolidada");
   console.log(consolidated, "CONSOLIDADADESDECONTEXT");
-
+  console.log(
+    Object.keys(forNetworkFiltered).length,
+    "Object.keys(forNetworkFiltered).length"
+  );
   // const history = useHistory();
 
   /*   const routeChange = () => {
@@ -272,6 +274,52 @@ export const ReportsThreeStudy = () => {
     setNewInitialHold([]);
   };
 
+  const toStringInPy = async (data) => {
+    console.log(data, "toStringInPy");
+    const res = await fetch("http://localhost:5000/stringdb", {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => res.json());
+    /* .then((res) => console.log(res)); */
+    const response = res;
+    console.log(response, "respOnsubmitstringdb");
+    let nodes = response
+      .map((item) => [item.preferredName_A, item.preferredName_B])
+      .flat(1)
+      .filter((value, index, self) => self.indexOf(value) === index) // valores unicos
+      .map((elem) => {
+        return { data: { id: elem, label: elem, type: "ip" } };
+      });
+
+    console.log(nodes, "dert ");
+
+    let edges = response.map((elem) => {
+      return {
+        data: { source: elem.preferredName_A, target: elem.preferredName_B },
+      };
+    });
+    console.log(edges, "forGr");
+
+    let namesDict = response.map((elem) => {
+      var o = {};
+      o[elem.preferredName_A] = elem.stringId_A
+        .split(/[.]/)
+        .slice(1, -1)
+        .toString();
+      return o;
+    });
+
+    console.log(namesDict, "NAMESDIC");
+
+    const me = { nodes: nodes, edges: edges };
+    console.log(me, "meeeee");
+    setDataToProviderForNetworkFiltered(me);
+  };
+
   const toStringInPyDos = async (data) => {
     console.log(JSON.stringify(data), "DATAtoStringInPy");
     const res = await fetch("http://localhost:5000/stringdball", {
@@ -284,7 +332,7 @@ export const ReportsThreeStudy = () => {
     }).then((res) => res.json());
     /* .then((res) => console.log(res)); */
     const response = res;
-    console.log(response, "respOnStryngyyy");
+    console.log(response, "respOnALL");
     setDataToProviderForNewNet(response);
 
     //const me = { nodes: nodes, edges: edges };
@@ -339,7 +387,7 @@ export const ReportsThreeStudy = () => {
     /// filtrado para fetc en python
 
     //let filteredArrNetForPyt = averfilter.map((value) => value.genes);
-    //toStringInPy(frt);
+    toStringInPy(frt);
     toStringInPyDos(frt);
     //let filteredArrNet = averfilter.map((value) => value.genes).join("%0d");
     //let newFil = filteredArrNet.join("%0d");
@@ -508,10 +556,7 @@ export const ReportsThreeStudy = () => {
             </div>
           </ListSection>
           {/* <div>parte otra</div> */}
-
-          <ListUploadComp />
-
-          {/*           <ListSection style={{ width: "44vw" }}>
+          <ListSection style={{ width: "44vw" }}>
             {newData.length > 0 ? (
               <>
                 <ListUpMenu>
@@ -526,6 +571,7 @@ export const ReportsThreeStudy = () => {
                     );
                   })}
                 </ListUpMenu>
+                {/*   <h1>Reports/reports1</h1> */}
                 {newData.map((aut) => {
                   return (
                     <CardCont key={aut.id}>
@@ -569,13 +615,14 @@ export const ReportsThreeStudy = () => {
                       label=""
                       show={newData.length}
                       funct={handleSubmit}
+                      /* multiple */
                       updateFilesCb={updateUploadedFiles}
                     />
                   </form>
                 </div>
               </FileUpCont>
             </div>
-          </ListSection> */}
+          </ListSection>
         </div>
       </ListSectionCont>
       <ListSectionCont>

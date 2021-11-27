@@ -151,7 +151,7 @@ export const FocusGraph = () => {
             //backgroundColor="grey"
           />
 
-          <button onClick={() => exportToPng(fgRef.current)}>Aqui</button>
+          <button onClick={() => exportToPng(fgRef.current)}>Aquii</button>
 
           <button onClick={() => clearAlpha(fgRef.current)}>clear</button>
         </>

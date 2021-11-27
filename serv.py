@@ -14,7 +14,10 @@ from decimal import Decimal as D
 import requests
 import networkx as nx
 from networkx.readwrite import json_graph;
+from scipy.stats.stats import pearsonr
+import itertools
 from functForNet import *
+
 
 
 app = Flask(__name__)
@@ -125,6 +128,75 @@ def col2dfeW():
   else:
     df = pd.read_csv("ConsolidadoMainDB.csv")
     return routineDF(df)
+
+
+
+#### functions for correlation
+
+def treatNames(filExpr):
+  new_item =[]
+  for c in filExpr:
+    result = ''.join([i for i in c if not i.isdigit()])
+    new_item.append(result)
+  unique_list = list(set(new_item))
+  return(unique_list)
+
+def corrPair(dfC):
+  df= dfC.T
+  correlations = {}
+  columns = df.columns.tolist()
+  for col_a, col_b in itertools.combinations(columns, 2):
+    correlations[col_a + '__' + col_b] = pearsonr(df.loc[:, col_a], df.loc[:, col_b])
+
+  result = pd.DataFrame.from_dict(correlations, orient='index')
+  result.columns = ['PCC', 'p-value']
+  newres= result.loc[(result['PCC'] > abs(0.8))&(result['p-value'] < (0.05))]
+  newres = newres.rename_axis('pair').reset_index()
+  if not newres.empty:
+    newres[['A','B']]  = newres.pair.str.split("__",1, expand=True)
+  ##return(newres.to_json(orient='records'))
+  return(newres.to_dict('records'))
+
+
+def toCorrelV2(sdf):
+  exps =treatNames(sdf)
+  mydict = {}
+  for i in range(len(exps)):
+    df2 = sdf.filter(regex=exps[i])
+    mydict[str(exps[i])]= corrPair(df2)
+  return(mydict)
+
+# route
+@app.route('/listsexp',methods=['POST','GET'])##
+@cross_origin()
+# route function
+def col2dfeWT():
+  if request.method == 'POST':
+    ##file = request.files.getlist('file')
+    file = request.files['file']
+    algo= request.form['username']## recibe strings
+    nodA= algo.split(',')
+    nodArrN= [i.strip() for i in nodA]
+    ndf = pd.read_csv(file,index_col=0)
+    sdf =ndf[ndf.index.isin(nodArrN)]
+    juoV = toCorrelV2(sdf)
+    jslisT= json.dumps(juoV)
+    return jslisT
+    
+
+'''     return routineDF(df)
+  else:
+    df = pd.read_csv("ConsolidadoMainDB.csv")
+    return routineDF(df) '''
+
+
+
+
+
+
+
+
+
 
 
 

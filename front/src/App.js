@@ -16,6 +16,7 @@ export const NameContext = createContext();
 function App() {
   const [initial, setInitial] = useState([]);
   const [clicked, setClicked] = useState(false);
+  const [clickedCdos, setClickedCdos] = useState(false);
   const [consolidated, setConsolidated] = useState([]);
   const [mds, setMds] = useState([]);
   const [fisher, setFisher] = useState([]);
@@ -25,6 +26,7 @@ function App() {
   const [forNetworkFiltered, setForNetworkFiltered] = useState([]);
   const [forNewNet, setForNewNet] = useState({});
   const [scrollDir, setScrollDir] = useState("scrolling up");
+  const [corrNodes, setCorrNodes] = useState({});
 
   console.log(forNewNet, "forNewNetiiiiiiinnnterrrrrr");
   //console.log(JSON.stringify(forNewNet), "forNewnet");
@@ -32,6 +34,9 @@ function App() {
   //console.log(filteredR, "RRRRinterselectRRRRR");
   let setDataToProviderClicked = (forState) => {
     setClicked(forState);
+  };
+  let setDataToProviderClickedCdos = (forState) => {
+    setClickedCdos(forState);
   };
   let setDataToProviderConsolidated = (forState) => {
     setConsolidated(forState);
@@ -64,7 +69,9 @@ function App() {
   let setDataToProviderScrollDir = (forState) => {
     setScrollDir(forState);
   };
-
+  let setDataToProviderCorrNodes = (forState) => {
+    setCorrNodes(forState);
+  };
   /*   const processRaw = (response) => {
     var result = Object.keys(response).map(function (key) {
       return { gene: key, author: response[key] };
@@ -129,6 +136,7 @@ function App() {
       value={{
         initial,
         clicked,
+        clickedCdos,
         consolidated,
         mds,
         fisher,
@@ -138,7 +146,9 @@ function App() {
         forNetworkFiltered,
         forNewNet,
         scrollDir,
+        corrNodes,
         setDataToProviderClicked: setDataToProviderClicked,
+        setDataToProviderClickedCdos: setDataToProviderClickedCdos,
         setDataToProviderConsolidated: setDataToProviderConsolidated,
         setDataToProviderMds: setDataToProviderMds,
         setDataToProviderFisher: setDataToProviderFisher,
@@ -149,6 +159,7 @@ function App() {
           setDataToProviderForNetworkFiltered,
         setDataToProviderForNewNet: setDataToProviderForNewNet,
         setDataToProviderScrollDir: setDataToProviderScrollDir,
+        setDataToProviderCorrNodes: setDataToProviderCorrNodes,
       }}
     >
       <Router>
