@@ -196,8 +196,9 @@ const ListUploadComp = () => {
   };
 
   return (
-    <div>
-      <ListSection style={{ width: "44vw" }}>
+    <>
+      <ListSection>
+        {/* style={{ width: "44vw" }} */}
         {newData.length > 0 ? (
           <>
             <ListUpMenu>
@@ -259,7 +260,7 @@ const ListUploadComp = () => {
           </FileUpCont>
         </div>
       </ListSection>
-    </div>
+    </>
   );
 };
 

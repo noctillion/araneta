@@ -169,6 +169,7 @@ export const ReportsThreeStudy = () => {
     setDataToProviderScrollDir,
     setDataToProviderCorrNodes,
     scrollDir,
+    forNewNet,
   } = useContext(NameContext);
   const [newData, setNewData] = useState([]);
   const [newInitialHold, setNewInitialHold] = useState([]);
@@ -177,6 +178,7 @@ export const ReportsThreeStudy = () => {
   //const [initialHold, setInitialHold] = useState([]);
   console.log(finlist, "listaConsolidada");
   console.log(consolidated, "CONSOLIDADADESDECONTEXT");
+  console.log(newData, "newDataNewdata");
 
   // const history = useHistory();
 
@@ -590,11 +592,15 @@ export const ReportsThreeStudy = () => {
         </ListSection>
         <ListUpTitle />
       </ListSectionCont>
-      <ListSectionCont>
-        <ListUploadComp />
-      </ListSectionCont>
 
-      <TresDGraph />
+      {Object.keys(forNewNet).length > 0 ? (
+        <>
+          <ListSectionCont>
+            <ListUploadComp />
+          </ListSectionCont>
+          <TresDGraph />
+        </>
+      ) : null}
 
       {/* <div style={{ width: "100%", height: "100px" }}></div> */}
 
