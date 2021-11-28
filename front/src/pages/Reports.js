@@ -720,6 +720,7 @@ export const ReportsTwo = () => {
     scrollDir,
     setDataToProviderFinlist,
     setDataToProviderScrollDir,
+    setDataToProviderForNewNet,
   } = useContext(NameContext);
   const [groupB, setGroupB] = useState([]);
   const [ppp, setPpp] = useState({});
@@ -915,6 +916,7 @@ export const ReportsTwo = () => {
 
   let sendConsolid = () => {
     setDataToProviderFinlist(totalListCon);
+    setDataToProviderForNewNet({});
     routeChangeDos();
     /// console.log(totalListCon, "aqi");
   };

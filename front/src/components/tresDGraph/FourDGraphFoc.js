@@ -20,6 +20,7 @@ import Fuse from "fuse.js";
 import ColorButton from "../colorButton/colorButton";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
 import Results from "../results/results";
+import CorrNodesBu from "../corrNodesBu/corrNodesBu";
 
 /* 
 const myData = {
@@ -81,13 +82,10 @@ export const FocusGraphDos = () => {
   console.log(forTablesStaSorted, "forTablesStaSorted");
   const [query, setQuery] = useState([]);
   console.log(query, "matches");
+  const [linkQuery, setLinkQuery] = useState([]);
+  console.log(linkQuery, "linkQuery");
 
-  const [toy, setToy] = useState([
-    { A: "AT2G38470", B: "AT5G04340" },
-    { A: "AT1G07135", B: "AT4G24570" },
-  ]);
-
-  console.log(toy, "toy");
+  console.log(Object.keys(corrNodes), "corrNodes");
 
   const onChangeHandler = (event) => {
     event.preventDefault();
@@ -489,11 +487,11 @@ export const FocusGraphDos = () => {
       });
 
       const listHasPilots = operatives.some(operative => operative.pilot); */
-      if (corrNodes.NAW !== undefined) {
-        const userExists = corrNodes.NAW.some(
+      if (linkQuery !== undefined) {
+        const userExists = linkQuery.some(
           (cosa) => cosa.A === link.source.name2 && cosa.B === link.target.name2
         );
-        const userExistsDos = corrNodes.NAW.some(
+        const userExistsDos = linkQuery.some(
           (cosa) => cosa.B === link.source.name2 && cosa.A === link.target.name2
         );
 
@@ -510,7 +508,7 @@ export const FocusGraphDos = () => {
         return "#ffffff30";
       } */
     },
-    [corrNodes]
+    [linkQuery]
   );
 
   /*   const linkSel = useCallback(
@@ -743,6 +741,11 @@ export const FocusGraphDos = () => {
     }
   };
 
+  let searchLinks = (algo) => {
+    setLinkQuery(corrNodes[algo]);
+    console.log(algo, "algo");
+  };
+
   return (
     <>
       <div
@@ -968,6 +971,22 @@ export const FocusGraphDos = () => {
               {/* <ColorGroup group={"grupo1"} color={"red"} />
               <ColorGroup group={"grupo2"} color={"blue"} /> */}
             </div>
+            {/* <CorrNodesBu /> */}
+            <>
+              {Object.keys(corrNodes).length > 0 ? (
+                <>
+                  {Object.keys(corrNodes).map((key, index) => {
+                    return (
+                      <>
+                        <button key={index} onClick={() => searchLinks(key)}>
+                          {key}
+                        </button>
+                      </>
+                    );
+                  })}
+                </>
+              ) : null}
+            </>
           </div>
         ) : null}
       </div>

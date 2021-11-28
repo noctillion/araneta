@@ -167,6 +167,7 @@ export const ReportsThreeStudy = () => {
     setDataToProviderInterselect,
     setDataToProviderForNewNet,
     setDataToProviderScrollDir,
+    setDataToProviderCorrNodes,
     scrollDir,
   } = useContext(NameContext);
   const [newData, setNewData] = useState([]);
@@ -420,6 +421,7 @@ export const ReportsThreeStudy = () => {
       onConsolidate(carray);
 
       //routeChange();
+      setDataToProviderCorrNodes({});
       setDataToProviderInterselect([]);
     }
   };
@@ -433,14 +435,16 @@ export const ReportsThreeStudy = () => {
         {/* <ListUpTitle />
           <ListUpTitle>Expresion list</ListUpTitle> */}
         {/* aqui */}
-        <div
-          style={{
+        <>
+          {" "}
+          {/*   style={{
             display: "flex",
             width: "90%",
             justifyContent: "space-between",
-          }}
-        >
-          <ListSection style={{ width: "44vw" }}>
+          }} */}
+          <ListSection>
+            {" "}
+            {/* style={{ width: "44vw" }} */}
             {newData.length > 0 ? (
               <>
                 <ListUpMenu>
@@ -480,7 +484,6 @@ export const ReportsThreeStudy = () => {
                 })}
               </>
             ) : null}
-
             <div
               style={{
                 display: "flex",
@@ -508,9 +511,7 @@ export const ReportsThreeStudy = () => {
             </div>
           </ListSection>
           {/* <div>parte otra</div> */}
-
-          <ListUploadComp />
-
+          {/*  <ListUploadComp /> */}
           {/*           <ListSection style={{ width: "44vw" }}>
             {newData.length > 0 ? (
               <>
@@ -576,7 +577,7 @@ export const ReportsThreeStudy = () => {
               </FileUpCont>
             </div>
           </ListSection> */}
-        </div>
+        </>
       </ListSectionCont>
       <ListSectionCont>
         <ListUpTitle>Consolidate lists</ListUpTitle>
@@ -588,6 +589,9 @@ export const ReportsThreeStudy = () => {
           </MainButton>
         </ListSection>
         <ListUpTitle />
+      </ListSectionCont>
+      <ListSectionCont>
+        <ListUploadComp />
       </ListSectionCont>
 
       <TresDGraph />
