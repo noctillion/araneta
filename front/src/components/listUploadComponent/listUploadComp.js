@@ -160,7 +160,7 @@ const ListUploadComp = () => {
     }).then((res) => res.json());
 
     const response = res;
-    console.log(response, "respOnsubmit");
+    //console.log(response, "respOnsubmit");
     //setNewData(response);
     setDataToProviderCorrNodes(response);
     setNewInitialHold([]);

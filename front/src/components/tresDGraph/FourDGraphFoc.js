@@ -51,40 +51,40 @@ export const FocusGraphDos = () => {
   const [graphData, setGraphData] = useState({});
   console.log(graphData, "graphDataLoqueentraAlaGrafica"); */
   // const [layout, setLayout] = useState([]);
-  console.log(corrNodes, "corrNodes..........");
+  //console.log(corrNodes, "corrNodes..........");
   const [width, height] = useWindowSize();
-  console.log(forNewNet, "forNewNet");
+  //console.log(forNewNet, "forNewNet");
   const [forManipulation, setForManipulation] = useState({});
   const fgRef = useRef();
   const [colors, setColors] = useState([]);
   //const [labels, setLabels] = useState(false);
-  console.log(colors, "colors");
+  //console.log(colors, "colors");
   //const [nColor, setNColor] = useState("green");
 
   const [nodeAmount, setNodeAmount] = useState(0.3);
   const [textColor, setTextColor] = useState("rgb(1, 1, 20)");
   const [searchName, setSearchName] = useState("");
-  console.log(searchName, "searchName");
-  console.log(nodeAmount, "nodeAmount");
+  //console.log(searchName, "searchName");
+  //console.log(nodeAmount, "nodeAmount");
   const [busqueda, setBusqueda] = useState([""]);
   const [search, setSearch] = useState(4);
   const [busqueda2, setBusqueda2] = useState(["TF_ID"]);
   const [busqueda3, setBusqueda3] = useState([]);
-  console.log(busqueda3, "busqueda3");
+  //console.log(busqueda3, "busqueda3");
 
   const [autoresLista, setAutoresLista] = useState([]);
   const [toglMult, setToglMult] = useState(false);
   const [toglMult2, setToglMult2] = useState(false);
   const [forTablesStaSortedFilt, setForTablesStaSortedFilt] = useState([]);
-  console.log(forTablesStaSortedFilt, "forTablesStaSortedFilt");
+  //console.log(forTablesStaSortedFilt, "forTablesStaSortedFilt");
   const [forTablesStaSorted, setForTablesStaSorted] = useState([]);
-  console.log(forTablesStaSorted, "forTablesStaSorted");
+  //console.log(forTablesStaSorted, "forTablesStaSorted");
   const [query, setQuery] = useState([]);
-  console.log(query, "matches");
+  //console.log(query, "matches");
   const [linkQuery, setLinkQuery] = useState([]);
-  console.log(linkQuery, "linkQuery");
+  //console.log(linkQuery, "linkQuery");
 
-  console.log(Object.keys(corrNodes), "corrNodes");
+  //console.log(Object.keys(corrNodes), "corrNodes");
 
   const [clicked, setClicked] = useState(false);
 
@@ -130,7 +130,7 @@ export const FocusGraphDos = () => {
     const fuse = new Fuse([forManipulation], options);
 
     const matches = fuse.search(searchName);
-    console.log(matches, "matchesIIII");
+    //console.log(matches, "matchesIIII");
     setQuery(matches);
   }, [forManipulation, searchName]);
 
@@ -164,7 +164,7 @@ export const FocusGraphDos = () => {
   }, [labels, fgRef]); */
 
   useEffect(() => {
-    console.log(forManipulation, "forManipulationAqui");
+    //console.log(forManipulation, "forManipulationAqui");
     if (forManipulation.nodes !== undefined) {
       let nodNet = forManipulation.nodes.map((node) => {
         return {
@@ -172,24 +172,24 @@ export const FocusGraphDos = () => {
           group: node.groupQuery,
         };
       });
-      console.log(nodNet, "nodeNet");
+      //console.log(nodNet, "nodeNet");
 
       const key = "group";
 
       const arrayUniqueByKey = [
         ...new Map(nodNet.map((item) => [item[key], item])).values(),
       ];
-      console.log(arrayUniqueByKey, "arrayUniqueByKey");
+      //console.log(arrayUniqueByKey, "arrayUniqueByKey");
       /// filter for stats
 
       let forTables = arrayUniqueByKey.map((item) => {
         let xg = forManipulation.nodes.filter(
           (node) => node.groupQuery === item.group
         );
-        console.log(xg, "xg");
+        //console.log(xg, "xg");
         return xg;
       });
-      console.log(forTables, "forTables");
+      //console.log(forTables, "forTables");
 
       /// filter for table stats
 
@@ -211,7 +211,7 @@ export const FocusGraphDos = () => {
       });
 
       setForTablesStaSorted(forTablesStaSorted);
-      console.log(forTablesStaSorted, "forTablesStaSorted");
+      //console.log(forTablesStaSorted, "forTablesStaSorted");
       ///
       function count(string) {
         var count = {};
@@ -241,9 +241,9 @@ export const FocusGraphDos = () => {
 
       let aver = nuevo();
 
-      console.log(aver, "aver");
+      //console.log(aver, "aver");
 
-      console.log(countsByG, "countsByG");
+      //console.log(countsByG, "countsByG");
 
       /* const map = new Map();
       arrayUniqueByKey.forEach((item) => map.set(item.group, item));
@@ -318,7 +318,7 @@ export const FocusGraphDos = () => {
           count: item.count,
         };
       });
-      console.log(newColors, "newColors");
+      //console.log(newColors, "newColors");
 
       setColors(newColors);
 
@@ -354,7 +354,7 @@ export const FocusGraphDos = () => {
       // Aim at node from outside it
 
       console.log(node, "object cliqueado");
-      console.log(fgRef.current, "fgRef.current");
+      //console.log(fgRef.current, "fgRef.current");
       node.color = "red";
       fgRef.current.refresh();
     },
@@ -412,13 +412,13 @@ export const FocusGraphDos = () => {
   }, []); */
 
   function exportToPng(dom) {
-    console.log(dom, "dom");
+    //console.log(dom, "dom");
     //dom.scene().background = new THREE.Color(0xff0000);
 
     var canvasf = dom.renderer();
     canvasf.getClearColor();
 
-    console.log(canvasf, "canvasf");
+    //console.log(canvasf, "canvasf");
     var newA = canvasf.domElement;
     console.log(newA, "newA");
     Canvas2Image.saveAsPNG(newA, newA.width, newA.height);
@@ -461,7 +461,7 @@ export const FocusGraphDos = () => {
       sprite.color = "rgba(187, 35, 100, 1)"; //{ textColor }; //node.color;
       sprite.textHeight = node.node_size1 / 500;
       fgRef.current.refresh();
-      console.log(fgRef.current, "fgRef.current");
+      //console.log(fgRef.current, "fgRef.current");
       return sprite;
     },
     [fgRef]
@@ -770,10 +770,10 @@ export const FocusGraphDos = () => {
               onNodeClick={handleClick}
               onNodeRightClick={handleClickRigth}
               rendererConfig={{ preserveDrawingBuffer: true, alpha: true }}
-              nodeRelSize="8"
-              nodeResolution="12"
-              linkOpacity="0.5"
-              linkResolution="10"
+              nodeRelSize={8} //"8"
+              nodeResolution={12} //"12"
+              linkOpacity={0.5} //"0.5"
+              linkResolution={10} //"10"
               linkColor={linkSel}
               linkWidth={() => 1}
               //linkDirectionalParticles={1}
@@ -941,7 +941,7 @@ export const FocusGraphDos = () => {
                 </>
               ) : null}
               <br />
-              <button onClick={console.log("object")}>Nodes</button>
+              <button /* onClick={console.log("object")} */>Nodes</button>
             </div>
 
             <div

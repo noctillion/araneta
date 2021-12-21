@@ -109,10 +109,11 @@ const FilterDos = ({ items }) => {
 
   return (
     <ButtContainer>
-      {nitems.map((object) => {
+      {nitems.map((object, index) => {
         /////items
         return (
           <Button
+            key={index}
             {...object}
             title={object.value} ////overlist.toString()
             value={object.value}

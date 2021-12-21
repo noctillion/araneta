@@ -137,10 +137,10 @@ export const FocusGraph = () => {
             nodeAutoColorBy="group"
             onNodeClick={handleClick}
             rendererConfig={{ preserveDrawingBuffer: true, alpha: true }}
-            nodeRelSize="8"
-            nodeResolution="12"
-            linkOpacity="0.5"
-            linkResolution="10"
+            nodeRelSize={8} //"8"
+            nodeResolution={12} //"12"
+            linkOpacity={0.5} //"0.5"
+            linkResolution={10} //"10"
             nodeThreeObject={(node) => {
               const sprite = new SpriteText(node.id);
               sprite.color = node.color;

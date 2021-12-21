@@ -327,7 +327,7 @@ export const ReportsOne = () => {
     };
 
     window.addEventListener("scroll", onScroll);
-    console.log(scrollDir);
+    //console.log(scrollDir);
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollDir, setDataToProviderScrollDir]);
@@ -764,7 +764,7 @@ export const ReportsTwo = () => {
     };
 
     window.addEventListener("scroll", onScroll);
-    console.log(scrollDir);
+    //console.log(scrollDir);
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollDir, setDataToProviderScrollDir]);

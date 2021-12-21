@@ -119,11 +119,11 @@ const Results = ({ resultsGeneral }) => {
   console.log(aver); */
 
   let filteredCard = resultsGeneral.map((element, index) => {
-    console.log(element, "eleeeement");
+    //console.log(element, "eleeeement");
     return element.map((elem) => filterOb(elem, scje));
   });
 
-  console.log(filteredCard);
+  //console.log(filteredCard);
 
   //let hji = pick(scje)(resultsGeneral[0][0]);
   //console.log(hji);
@@ -135,12 +135,12 @@ const Results = ({ resultsGeneral }) => {
       <ListUpTitle>Network Centrality Measures by Group</ListUpTitle>
       <ListSection>
         {filteredCard.slice(0, 5).map((result, index) => {
-          console.log(result, "ressssssss");
+          //console.log(result, "ressssssss");
           return (
             <CardCont key={index}>
               <h3>Group: {result[0].groupQuery}</h3>
               <p>Nodes: {result.length}</p>
-              <button onClick={() => console.log(result, "ddtt")}>
+              <button onClick={() => alert(/* result, */ "ddtt")}>
                 expand
               </button>
               <br />

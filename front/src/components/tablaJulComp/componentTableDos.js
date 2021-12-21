@@ -71,15 +71,15 @@ const ComponentTableDos = ({ nData, names }) => {
   return (
     <TableCont>
       <TableDiv rowCount={rowCount}>
-        {Object.keys(names).map((key) => {
-          return <CellDivHead>{names[key]}</CellDivHead>;
+        {Object.keys(names).map((key, index) => {
+          return <CellDivHead key={index}>{names[key]}</CellDivHead>;
         })}
         {/* <div>aqui</div> */}
       </TableDiv>
 
       {nData.slice(0, 5).map((item, index) => {
         return (
-          <div>
+          <div key={index}>
             {/* <TableDiv rowCount={rowCount}>
               {Object.keys(item).map((key) => {
                 console.log(key, "item[key]");

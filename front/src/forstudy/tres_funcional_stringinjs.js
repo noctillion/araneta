@@ -167,11 +167,11 @@ export const ReportsThreeStudy = () => {
   //const [dataForNet, setDataForNet] = useState([]);
   //const [locInitial, setlocInitial] = useState([]);
   //const [initialHold, setInitialHold] = useState([]);
-  console.log(finlist, "listaConsolidada");
-  console.log(
+  //console.log(finlist, "listaConsolidada");
+  /*   console.log(
     Object.keys(forNetworkFiltered).length,
     "Object.keys(forNetworkFiltered).length"
-  );
+  ); */
   // const history = useHistory();
 
   /*   const routeChange = () => {
@@ -274,13 +274,13 @@ export const ReportsThreeStudy = () => {
     }).then((res) => res.json());
 
     const response = res;
-    console.log(response, "respOnsubmit");
+    //console.log(response, "respOnsubmit");
     setNewData(response);
     setNewInitialHold([]);
   };
 
   const onConsolidate = async (data) => {
-    console.log(data, "loqueseMandaEntres");
+    //console.log(data, "loqueseMandaEntres");
     const res = await fetch("http://localhost:5000/consolidate", {
       method: "POST",
       headers: {

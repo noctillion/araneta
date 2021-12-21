@@ -289,8 +289,8 @@ export const FocusGraphDos = () => {
     (node) => {
       // Aim at node from outside it
 
-      console.log(node, "object cliqueado");
-      console.log(fgRef.current, "fgRef.current");
+      //console.log(node, "object cliqueado");
+      //console.log(fgRef.current, "fgRef.current");
       node.color = "red";
       fgRef.current.refresh();
     },
@@ -592,10 +592,10 @@ export const FocusGraphDos = () => {
               onNodeClick={handleClick}
               onNodeRightClick={handleClickRigth}
               rendererConfig={{ preserveDrawingBuffer: true, alpha: true }}
-              nodeRelSize="8"
-              nodeResolution="12"
-              linkOpacity="0.5"
-              linkResolution="10"
+              nodeRelSize={8} //"8"
+              nodeResolution={12} //"12"
+              linkOpacity={0.5} //"0.5"
+              linkResolution={10} //"10"
               nodeOpacity={nodeAmount}
               //nodeColor={(node) => (node.id === "HSP101" ? "orange" : "white")}
               //nodeColor={handleNodeColor}

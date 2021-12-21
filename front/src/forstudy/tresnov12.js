@@ -3,7 +3,7 @@ import styled from "styled-components";
 import * as AiIcons from "react-icons/ai";
 import { NameContext } from "../App";
 import FileUpload from "../components/fileupload/FileUpload";
-import Upset from "../components/upset/upset";
+//import Upset from "../components/upset/upset";
 //import Network from "../components/network/network";
 //import GraphCyt from "../components/citoNetw/citoNet";
 //import NApp from "../components/citoNetwDos/citoNetD";
@@ -173,12 +173,12 @@ export const ReportsThreeStudy = () => {
   //const [dataForNet, setDataForNet] = useState([]);
   //const [locInitial, setlocInitial] = useState([]);
   //const [initialHold, setInitialHold] = useState([]);
-  console.log(finlist, "listaConsolidada");
-  console.log(consolidated, "CONSOLIDADADESDECONTEXT");
-  console.log(
+  //console.log(finlist, "listaConsolidada");
+  //console.log(consolidated, "CONSOLIDADADESDECONTEXT");
+  /*   console.log(
     Object.keys(forNetworkFiltered).length,
     "Object.keys(forNetworkFiltered).length"
-  );
+  ); */
   // const history = useHistory();
 
   /*   const routeChange = () => {
@@ -217,7 +217,7 @@ export const ReportsThreeStudy = () => {
     };
 
     window.addEventListener("scroll", onScroll);
-    console.log(scrollDir);
+    //console.log(scrollDir);
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollDir, setDataToProviderScrollDir]);
@@ -269,7 +269,7 @@ export const ReportsThreeStudy = () => {
     }).then((res) => res.json());
 
     const response = res;
-    console.log(response, "respOnsubmit");
+    //console.log(response, "respOnsubmit");
     setNewData(response);
     setNewInitialHold([]);
   };
@@ -286,7 +286,7 @@ export const ReportsThreeStudy = () => {
     }).then((res) => res.json());
     /* .then((res) => console.log(res)); */
     const response = res;
-    console.log(response, "respOnsubmitstringdb");
+    //console.log(response, "respOnsubmitstringdb");
     let nodes = response
       .map((item) => [item.preferredName_A, item.preferredName_B])
       .flat(1)
@@ -321,7 +321,7 @@ export const ReportsThreeStudy = () => {
   };
 
   const toStringInPyDos = async (data) => {
-    console.log(JSON.stringify(data), "DATAtoStringInPy");
+    //console.log(JSON.stringify(data), "DATAtoStringInPy");
     const res = await fetch("http://localhost:5000/stringdball", {
       method: "POST",
       headers: {
@@ -341,7 +341,7 @@ export const ReportsThreeStudy = () => {
   };
 
   const onConsolidate = async (data) => {
-    console.log(data, "loqueseMandaEntres");
+    //console.log(data, "loqueseMandaEntres");
     const res = await fetch("http://localhost:5000/consolidate", {
       method: "POST",
       headers: {
@@ -352,9 +352,9 @@ export const ReportsThreeStudy = () => {
     }).then((res) => res.json());
     /* .then((res) => console.log(res)); */
     const response = res;
-    console.log(response, "objectLoquerecibeEntres");
+    //console.log(response, "objectLoquerecibeEntres");
     let averfilter = response.filter((obj) => finlist.includes(obj.genes));
-    console.log(averfilter, "FiltradoobjectLoquerecibeEntres");
+    //console.log(averfilter, "FiltradoobjectLoquerecibeEntres");
 
     /// adicionar lo de la lista consolidada
 
@@ -381,7 +381,7 @@ export const ReportsThreeStudy = () => {
     };
 
     let frt = filterByReference(consolidated, averfilter);
-    console.log(frt, "NuevoAverQQ");
+    //console.log(frt, "NuevoAverQQ");
 
     //setDataToProviderForNetworkFiltered(averfilter);
     /// filtrado para fetc en python

@@ -101,7 +101,7 @@ const SmallSquare = styled.div`
 `; */
 
 const MainHeat = ({ datam, names }) => {
-  console.log(datam, "dataaaWWWWW");
+  //console.log(datam, "dataaaWWWWW");
 
   let data = datam.map((vals) => {
     return vals.map((rt) => {
@@ -199,9 +199,10 @@ const MainHeat = ({ datam, names }) => {
               <div
                 style={{ width: "100%", height: "20vh", marginBottom: "10px" }}
               ></div>
-              {names.map((row) => {
+              {names.map((row, index) => {
                 return (
                   <SmallSquare
+                    key={index}
                     style={{
                       display: "inline-flex",
                       justifyContent: "flex-end",
@@ -227,9 +228,10 @@ const MainHeat = ({ datam, names }) => {
                   alignItems: "center",
                 }} */
                 >
-                  {names.map((column) => {
+                  {names.map((column, index) => {
                     return (
                       <SmallSquare
+                        key={index}
                         style={{
                           writingMode: "vertical-lr",
                           display: "inline-flex",
@@ -251,7 +253,7 @@ const MainHeat = ({ datam, names }) => {
               </div>
               <HeatMain numc={dataIn.columns}>
                 {data.map((elem) => {
-                  return elem.map((elem) => {
+                  return elem.map((elem, index) => {
                     /*   let col = `rgb(252, 27, 1, ${
                       1 -
                       (maxmin.max - elem.overlap) / (maxmin.max - maxmin.min)
@@ -264,9 +266,9 @@ const MainHeat = ({ datam, names }) => {
                       v3min: maxmin.min,
                     };
 
-                    console.log(vfRgt, "objectCA");
+                    //console.log(vfRgt, "objectCA");
                     return (
-                      <SmallSquareCo col={col} elem={elem} />
+                      <SmallSquareCo col={col} elem={elem} key={index} />
                       /*                       <SmallSquareC
                         color={col}
                         before={elem.pval}
