@@ -3,6 +3,7 @@
 # We shouldn't install flask in the terminal, it is already imported
 from flask import (Flask, request,jsonify)
 from flask_cors import CORS, cross_origin
+from flask.helpers import send_from_directory
 import numpy as np
 import pandas as pd
 import json
@@ -20,7 +21,7 @@ from functForNet import *
 
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='front/build', static_url_path='')
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
@@ -407,6 +408,10 @@ def jsonToNetTV3():
   return(mydict)
  
 
+app.route('/')
+@cross_origin()
+def serve():
+  return send_from_directory(app.static_folder, 'index.html')
 
 # listen
 if __name__ == "__main__":
