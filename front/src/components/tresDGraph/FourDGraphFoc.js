@@ -4,9 +4,8 @@ import React, {
   useContext,
   useEffect,
   useState,
-  useMemo,
 } from "react";
-import * as THREE from "three";
+//import * as THREE from "three";
 //import domtoimage from "dom-to-image";
 import Canvas2Image from "../../utils/canvasSave";
 import SpriteText from "three-spritetext";
@@ -18,9 +17,9 @@ import ColorGroup from "../colorGroup/colorGroup";
 import SearchBar from "../searchBar/searchBar";
 import Fuse from "fuse.js";
 import ColorButton from "../colorButton/colorButton";
-import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
+//import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
 import Results from "../results/results";
-import CorrNodesBu from "../corrNodesBu/corrNodesBu";
+//import CorrNodesBu from "../corrNodesBu/corrNodesBu";
 
 /* 
 const myData = {
@@ -58,9 +57,9 @@ export const FocusGraphDos = () => {
   const [forManipulation, setForManipulation] = useState({});
   const fgRef = useRef();
   const [colors, setColors] = useState([]);
-  const [labels, setLabels] = useState(false);
+  //const [labels, setLabels] = useState(false);
   console.log(colors, "colors");
-  const [nColor, setNColor] = useState("green");
+  //const [nColor, setNColor] = useState("green");
 
   const [nodeAmount, setNodeAmount] = useState(0.3);
   const [textColor, setTextColor] = useState("rgb(1, 1, 20)");
@@ -86,6 +85,8 @@ export const FocusGraphDos = () => {
   console.log(linkQuery, "linkQuery");
 
   console.log(Object.keys(corrNodes), "corrNodes");
+
+  const [clicked, setClicked] = useState(false);
 
   const onChangeHandler = (event) => {
     event.preventDefault();
@@ -441,7 +442,7 @@ export const FocusGraphDos = () => {
 
   //useEffect(() => {}, [fgRef]);
 
-  const glowTry = useCallback(
+  /*   const glowTry = useCallback(
     (node) => {
       const bloomPass = new UnrealBloomPass(node);
       bloomPass.strength = 0.2;
@@ -452,7 +453,7 @@ export const FocusGraphDos = () => {
       console.log(fgRef.current, "fgRef.current");
     },
     [fgRef]
-  );
+  ); */
 
   const spriText = useCallback(
     (node) => {
@@ -743,6 +744,7 @@ export const FocusGraphDos = () => {
 
   let searchLinks = (algo) => {
     setLinkQuery(corrNodes[algo]);
+    setClicked(!clicked);
     console.log(algo, "algo");
   };
 
@@ -798,6 +800,7 @@ export const FocusGraphDos = () => {
                 node.fz = node.z;
               }}
             />
+
             <div
               style={{
                 display: "flex",
@@ -972,7 +975,14 @@ export const FocusGraphDos = () => {
               <ColorGroup group={"grupo2"} color={"blue"} /> */}
             </div>
             {/* <CorrNodesBu /> */}
-            <>
+            <div
+              style={{
+                display: "flex",
+                position: "absolute",
+                bottom: "-1px",
+                left: "0px",
+              }}
+            >
               {Object.keys(corrNodes).length > 0 ? (
                 <>
                   {Object.keys(corrNodes).map((key, index) => {
@@ -986,7 +996,7 @@ export const FocusGraphDos = () => {
                   })}
                 </>
               ) : null}
-            </>
+            </div>
           </div>
         ) : null}
       </div>

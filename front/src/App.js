@@ -28,7 +28,7 @@ function App() {
   const [scrollDir, setScrollDir] = useState("scrolling up");
   const [corrNodes, setCorrNodes] = useState({});
 
-  console.log(forNewNet, "forNewNetiiiiiiinnnterrrrrr");
+  //console.log(forNewNet, "forNewNetiiiiiiinnnterrrrrr");
   //console.log(JSON.stringify(forNewNet), "forNewnet");
   //console.log(consolidated, "consolidated");
   //console.log(filteredR, "RRRRinterselectRRRRR");
@@ -127,7 +127,7 @@ function App() {
         }
       });
       return () => unlisten();
-    }, []);
+    }, [history]);
     return null;
   }
 

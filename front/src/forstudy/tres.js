@@ -3,7 +3,7 @@ import styled from "styled-components";
 import * as AiIcons from "react-icons/ai";
 import { NameContext } from "../App";
 import FileUpload from "../components/fileupload/FileUpload";
-import Upset from "../components/upset/upset";
+//import Upset from "../components/upset/upset";
 //import Network from "../components/network/network";
 //import GraphCyt from "../components/citoNetw/citoNet";
 //import NApp from "../components/citoNetwDos/citoNetD";
@@ -160,10 +160,10 @@ export const ReportsThreeStudy = () => {
   const {
     //initial,
     finlist,
-    forNetworkFiltered,
+    //forNetworkFiltered,
     setDataToProviderClicked,
     consolidated,
-    setDataToProviderForNetworkFiltered,
+    //setDataToProviderForNetworkFiltered,
     setDataToProviderInterselect,
     setDataToProviderForNewNet,
     setDataToProviderScrollDir,
@@ -173,6 +173,7 @@ export const ReportsThreeStudy = () => {
   } = useContext(NameContext);
   const [newData, setNewData] = useState([]);
   const [newInitialHold, setNewInitialHold] = useState([]);
+  const [showUploCor, setShowUploCor] = useState(false);
   //const [dataForNet, setDataForNet] = useState([]);
   //const [locInitial, setlocInitial] = useState([]);
   //const [initialHold, setInitialHold] = useState([]);
@@ -590,15 +591,24 @@ export const ReportsThreeStudy = () => {
             </span>
           </MainButton>
         </ListSection>
-        <ListUpTitle />
+        {/* <ListUpTitle /> */}
       </ListSectionCont>
 
       {Object.keys(forNewNet).length > 0 ? (
         <>
           <ListSectionCont>
-            <ListUploadComp />
+            <ListUpTitle>
+              <button onClick={() => setShowUploCor(!showUploCor)}>
+                Upload normalized count matrix
+              </button>
+            </ListUpTitle>
+            {showUploCor ? <ListUploadComp /> : null}
           </ListSectionCont>
-          <TresDGraph />
+
+          <ListSectionCont>
+            <ListUpTitle>PPI consensus network</ListUpTitle>
+            <TresDGraph />
+          </ListSectionCont>
         </>
       ) : null}
 

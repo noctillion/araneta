@@ -13,9 +13,9 @@ export default function NApp() {
     forNetworkFiltered,
   } = useContext(NameContext);
 
-  console.log(forNetworkFiltered, "forNetworkFilteredforNetworkFiltered");
-  const [width, setWith] = useState("100%");
-  const [height, setHeight] = useState("100vh");
+  //console.log(forNetworkFiltered, "forNetworkFilteredforNetworkFiltered");
+  const [width] = useState("100%");
+  const [height] = useState("100vh");
 
   /*  const [graphData, setGraphData] = useState({
     nodes: [
@@ -70,12 +70,12 @@ export default function NApp() {
     //setLayout(layout);
   }, [forNetworkFiltered]);
 
-  const layout = {
+  /*   const layout = {
     name: "cose-bilkent",
     directed: false,
     avoidOverlap: true,
     spacingFactor: 2.5,
-  };
+  }; */
 
   const layoutD = {
     animate: false,
@@ -203,14 +203,14 @@ export default function NApp() {
               cy={(cy) => {
                 myCyRef = cy;
 
-                console.log("EVT", cy);
+                //console.log("EVT", cy);
 
                 cy.on("add", "tap", "node", (evt) => {
                   var node = evt.target;
 
-                  console.log("EVT", evt);
+                  //console.log("EVT", evt);
                   console.log("TARGET", node.data());
-                  console.log("TARGET TYPE", typeof node[0]);
+                  //console.log("TARGET TYPE", typeof node[0]);
                 });
               }}
               abc={console.log("myCyRef", myCyRef)}
